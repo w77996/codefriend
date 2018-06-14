@@ -1,0 +1,64 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/task
+   		http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://code.alibabatech.com/schema/dubbo        
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+		
+   <!-- 扫描com.xieke.test包下的所有class文件，配置注解的类全都装入容器中进行管理 -->  
+    <context:component-scan base-package="com.qx.cfg" />  
+    <!-- 添加注解驱动 -->  
+    <mvc:annotation-driven />  
+    <!-- 静态资源处理 -->  
+    <mvc:resources mapping="/res/**"  location="/res/"  cache-period="3600"/>
+	<mvc:resources mapping="/static/**"  location="/static/"  cache-period="3600"/>
+      
+ 
+  
+    <!-- FreeMarker视图解析器  -->  
+    <bean id="freemarkerResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">  
+        <property name="order" value="1" />  
+        <property name="suffix" value=".html" />  
+        <property name="contentType" value="text/html;charset=utf-8" />  
+        <property name="viewClass">  
+            <value>org.springframework.web.servlet.view.freemarker.FreeMarkerView</value>  
+        </property>  
+    </bean>  
+      
+    <!-- freemarker的配置 -->    
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">  
+        <property name="templateLoaderPath">  
+            <value>/WEB-INF/views/</value>  
+        </property>  
+        <property name="freemarkerSettings"><!-- 设置FreeMarker环境属性 -->  
+            <props>  
+                <prop key="template_update_delay">5</prop><!--刷新模板的周期，单位为秒 -->  
+                <prop key="default_encoding">UTF-8</prop><!--模板的编码格式 -->  
+                <prop key="locale">UTF-8</prop><!-- 本地化设置 -->  
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>  
+                <prop key="time_format">HH:mm:ss</prop>  
+                <prop key="number_format">0.####</prop>  
+                <prop key="boolean_format">true,false</prop>  
+                <prop key="whitespace_stripping">true</prop>  
+                <prop key="tag_syntax">auto_detect</prop>  
+                <prop key="url_escaping_charset">UTF-8</prop>  
+                <prop key="auto_import">/WEB-INF/ftl/spring.ftl as s</prop>
+            </props>  
+        </property>  
+    </bean>  
+</beans>

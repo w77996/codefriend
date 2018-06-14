@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- 不能联想 sts -->
+<configuration>
+	<!-- setting 迟延加载 二级缓存 （不用） 分布式缓存 -->
+
+
+	<!-- 别名 -->
+	<!-- <typeAliases> <package name="com.qx.cfg.bean"/> </typeAliases> -->
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+			<!-- 使用下面的方式配置参数，后面会有所有的参数介绍 -->
+			<property name="reasonable" value="true" />
+		</plugin>
+	</plugins>
+	<!--<!–分页参数合理化 –> -->
+	<!-- Mapper 位置 配置 <mappers> </mappers> -->
+
+</configuration>
